@@ -5,28 +5,30 @@ const Button = (props) => {
   console.log(props);
   return (
     <button
+      onClick={(evt) => {
+        props.onButtonClick('au cas ou j\'ai ete cliqué')
+      }}
       style={{
         ...props.style,
         backgroundColor: props.bgcolor,
         color: props.color,
       }}
       type={props.type}
-      className={style.Button}
+      className={style.Button + " btn"}
     >
-      {" "}
       {props.children}
     </button>
   );
 };
-//specification dans la console ce que l"on doit respecter dans l'app.jsx
 Button.propTypes = {
   type: PropTypes.oneOf(["button", "reset", "submit"]),
   bgcolor: PropTypes.oneOf(["tomato", "skyblue", "lime"]),
-  color: PropTypes.oneOf(["White", "black "]),
+  color: PropTypes.oneOf(["white", "black"]),
   children: PropTypes.any.isRequired,
   style: PropTypes.shape({
     width: PropTypes.string,
-    height:PropTypes.string
+    height: PropTypes.string,
   }),
+  onButtonClick: PropTypes.func,
 };
 export default Button;
